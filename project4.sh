@@ -1,6 +1,8 @@
 ########## Linux ##########
-cd /home/personal/groupdirs/SCIENCE-BIO-popgen_course-project/Gorilla/data/GorgorStudent
-mkdir ../allsample 
+cd /home/personal/groupdirs/SCIENCE-BIO-popgen_course-project/Gorilla/data
+
+mkdir allsample 
+cd GorgorStudent
 ## change Family ID as subspecies name, and rename other files
 awk '{$1 = substr($1,1,3);print $0}' GorgorWholeGen.ped > GorgorWholeGenFID.ped
 cp GorgorWholeGen.map > GorgorWholeGenFID.map
@@ -24,9 +26,9 @@ plink --bfile ../Gsample21.clean --noweb --keep western_pop.txt --indep-pairwise
 plink --bfile ../Gsample21.clean --noweb --keep western_pop.txt --extract west.prune.in --make-bed --out westpurned21.clean
 plink --bfile ../Gsample21.clean --noweb --keep eastern_pop.txt --indep-pairwise 50 5 0.5 --recode --out east
 plink --bfile ../Gsample21.clean --noweb --keep eastern_pop.txt --extract east.prune.in --make-bed --out eastpurned21.clean
-plink --bfile Gsample21.clean  --pca 10 --out ./PCA/Gsample21.pca10
-plink --bfile eastpurned21.clean  --pca 10 --out ./east.pca10
-plink --bfile westpurned21.clean  --pca 10 --out ./west.pca10
+plink --bfile ../Gsample21.clean  --pca 10 --out Gsample21.pca10
+plink --bfile eastpurned21.clean  --pca 10 --out east.pca10
+plink --bfile westpurned21.clean  --pca 10 --out west.pca10
 Rscript do_PCA.r
 
 ###admixture###
@@ -77,20 +79,17 @@ Rscript do_Inbreedingplot.r
 cd ../LD21
 plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --chr 21 --family --keep-cluster-names Gbb --recode --out Gbb_LD
 plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --chr 21 --family --keep-cluster-names Gbg --recode --out Gbg_LD
-plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --chr 21 --family --keep-cluster-names Ggd --recode --out Ggd_LD
 plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --chr 21 --family --keep-cluster-names Ggg --recode --out Ggg_LD
 plink --file Gbb_LD --maf 0.15 --geno 0 --thin 0.20 --from 21:3016639 --to 21:8024075 --make-bed --out Gbb_block
 plink --file Gbg_LD --maf 0.15 --geno 0 --thin 0.20 --from 21:3016639 --to 21:8024075 --make-bed --out Gbg_block
-plink --file Ggd_LD --maf 0.15 --geno 0 --thin 0.20 --from 21:3016639 --to 21:8024075 --make-bed --out Ggd_block
 plink --file Ggg_LD --maf 0.15 --geno 0 --thin 0.20 --from 21:3016639 --to 21:8024075 --make-bed --out Ggg_block
 Rscript do_LDblock.r
 
 ###LD decay###
 plink --bfile ../Gsample21.clean --family --keep-cluster-names Gbb --recode --out Gbb
 plink --bfile ../Gsample21.clean --family --keep-cluster-names Gbg --recode --out Gbg
-plink --bfile ../Gsample21.clean --family --keep-cluster-names Ggd --recode --out Ggd
 plink --bfile ../Gsample21.clean --family --keep-cluster-names Ggg --recode --out Ggg
-## remove '21:'
+# remove '21:'
 awk '{$2 = substr($2,4);print $0}' Gbb.map > Gbb2.map
 rm Gbb.map 
 mv Gbb2.map Gbb.map 
@@ -102,8 +101,6 @@ plink --file Gbg --make-bed --out Gbg
 awk '{$2 = substr($2,4);print $0}' Ggg.map > Ggg2.map
 rm Ggg.map 
 plink --file Ggg --make-bed --out Ggg
-plink --file Gbg --make-bed --out Gbg
-plink --file Gbb --make-bed --out Gbb
 Rscript do_LDdecay.r
 
 ###Ne###
@@ -126,6 +123,7 @@ plink --bfile Ggg.clean --r2 square --out Ggg.clean
 Rscript do_NEestimate.r
 
 ###Ne/Nc###
+Rscript do_Ne_Nc_plot.r
 
 ###TreeMix###
 cd../Treemix
@@ -134,3 +132,5 @@ gzip plink.frq.strat
 python plink2treemix.py plink.frq.strat.gz  treemix.gz
 treemix -i treemix.gz -root 5 -k 2  -o allstem
 Rscript do_treemix.r
+
+print("Finish!:D")
