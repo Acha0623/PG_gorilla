@@ -11,6 +11,6 @@ for (index in 1:3){
     res = get_Ne(base_path = paste("./", POP,".clean", sep = ''))
     DF[index, ] = c(POP, res$Ne_est)
 }
-DF
+
+print(DF)
 write.table(DF, "./Ne_estimates.txt", sep = '\t', quote = FALSE, row.names = FALSE)
-print("Done Ne-estimate")
