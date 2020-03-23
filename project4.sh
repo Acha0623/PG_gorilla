@@ -110,9 +110,9 @@ plink --file gorilla --make-bed --out gorilla
 plink --bfile gorilla --not-chr xy --make-bed --out gorilla.clean
 nano GbgsampleID.txt  ## choose 7 individuals from Gbg individuals
 nano GggsampleID.txt  ## choose 7 individuals from Ggg individuals
-plink --bfile gorilla.clean --family --keep-cluster-names Gbg --keep GbgsampleID.txt -hwe 0.001 --geno 0.02 --maf 0.05 --make-bed --out Gbg
-plink --bfile gorilla.clean --family --keep-cluster-names Ggg --keep GggsampleID.txt -hwe 0.001 --geno 0.02 --maf 0.05 --make-bed --out Ggg
-plink --bfile gorilla.clean --family --keep-cluster-names Gbb -hwe 0.001 --geno 0.02 --maf 0.05 --make-bed --out Gbb
+plink --bfile gorilla.clean --family --keep-cluster-names Gbg --keep GbgsampleID.txt --hwe 0.001 --geno 0.02 --maf 0.05 --make-bed --out Gbg
+plink --bfile gorilla.clean --family --keep-cluster-names Ggg --keep GggsampleID.txt --hwe 0.001 --geno 0.02 --maf 0.05 --make-bed --out Ggg
+plink --bfile gorilla.clean --family --keep-cluster-names Gbb --hwe 0.001 --geno 0.02 --maf 0.05 --make-bed --out Gbb
 
 plink --bfile Ggg --thin 0.001 --make-bed --out Ggg.clean
 plink --bfile Gbg --thin 0.002 --make-bed --out Gbg.clean
