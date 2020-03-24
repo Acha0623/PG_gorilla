@@ -18,7 +18,7 @@ for_ratio_barplot = data.matrix(t(estimates[,'ratio']))
 colnames(for_ratio_barplot) = estimates$Pop
 
 
-png('./Ne_and_Nc.png', width=1000,height =1000,res=100)
+png('./Ne&Nc.png', width=1000,height =1000,res=100)
 par(mfrow=c(2,2),mar=c(7.5,5.5,3,3))
 barplot(for_barplot['Ne_est',], col = "white", beside = TRUE, las=2,width=0.8,
        main = "Ne estimates for each population",ylab = '',cex.main=1.4)
