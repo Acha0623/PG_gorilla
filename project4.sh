@@ -22,9 +22,9 @@ cd ../PCA
 nano western_pop.txt  ## create a file including all western samples
 nano eastern_pop.txt  ## create a file including all eastern samples
 ## remove all pairs in LD with an R2 correlation coefficient of 0.5 or greater
-plink --bfile ../Gsample21.clean --noweb --keep western_pop.txt --indep-pairwise 50 5 0.5 --recode --out west
+plink --bfile ../Gsample21.clean --noweb --keep western_pop.txt --indep-pairwise 50 10 0.5 --recode --out west
 plink --bfile ../Gsample21.clean --noweb --keep western_pop.txt --extract west.prune.in --make-bed --out westpurned21.clean
-plink --bfile ../Gsample21.clean --noweb --keep eastern_pop.txt --indep-pairwise 50 5 0.5 --recode --out east
+plink --bfile ../Gsample21.clean --noweb --keep eastern_pop.txt --indep-pairwise 50 10 0.5 --recode --out east
 plink --bfile ../Gsample21.clean --noweb --keep eastern_pop.txt --extract east.prune.in --make-bed --out eastpurned21.clean
 plink --bfile ../Gsample21.clean  --pca 10 --out Gsample21.pca10
 plink --bfile eastpurned21.clean  --pca 10 --out east.pca10
@@ -34,7 +34,7 @@ Rscript do_PCA.r
 ###admixture###
 cd ../admixture
 #filter LD 
-plink --bfile ../Gsample21.clean --indep-pairwise 50 5 0.5
+plink --bfile ../Gsample21.clean --indep-pairwise 50 10 0.5
 plink --bfile ../Gsample21.clean --extract plink.prune.in --make-bed --out prunedData
 for i in 2 3 4 5 6; do admixture --cv prunedData.bed $i; done > cvoutput
 grep -i 'CV error' ./cvoutput
