@@ -34,7 +34,7 @@ Rscript do_PCA.r
 ###admixture###
 cd ../admixture
 #filter LD 
-plink --bfile ../Gsample21.clean --indep-pairwise 50 10 0.5
+plink --bfile ../Gsample21.clean --indep-pairwise 50 5 0.5
 plink --bfile ../Gsample21.clean --extract plink.prune.in --make-bed --out prunedData
 for i in 2 3 4 5 6; do admixture --cv prunedData.bed $i; done > cvoutput
 grep -i 'CV error' ./cvoutput
