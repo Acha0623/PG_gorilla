@@ -8,7 +8,7 @@ awk '{$1 = substr($1,1,3);print $0}' GorgorWholeGen.ped > GorgorWholeGenFID.ped
 cp GorgorWholeGen.map > GorgorWholeGenFID.map
 cp GorgorWholeGen.log > GorgorWholeGenFID.log
 plink --file GorgorWholeGenFID --make-bed --out GorgorWholeGenFID 
-## filter data, choose 21 chromosome
+## filter data, choose 21 chromosome for 45 samples including human
 plink --bfile GorgorWholeGenFID --chr 21 --hwe .001 --geno 0.02 --thin 0.15 --maf 0.15 --make-bed --out ../allsample/allsample21.clean
 nano GorillaID.txt  ## create a file including family ID and sample ID of all samples
 plink --bfile GorgorWholeGenFID --noweb --keep GorillaID.txt --chr 21 --hwe .001 --geno 0.02 --thin 0.15 --maf 0.15 --make-bed --out ../allsample/Gsample21.clean
