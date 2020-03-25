@@ -1,11 +1,12 @@
 #PCA
 
-#calculate
+#calculate precentage variance the PC1 captured 
 first_pc <- function(path){
         egivals=read.table(path)
         first=round((egivals[1,]/sum(egivals)*100),2)
         return(first)
 }
+#calculate precentage variance the PC1 captured 
 second_pc <- function(path){
         egivals=read.table(path)
         second=round((egivals[2,]/sum(egivals)*100),2)
