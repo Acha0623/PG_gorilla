@@ -72,6 +72,22 @@ pop_evsw<-pop_ew[ifelse(pop_ew==1,TRUE,ifelse(pop_ew==2,TRUE,FALSE))]
 g_evsw<-g[,ifelse(pop_ew==1,TRUE,ifelse(pop_ew==2,TRUE,FALSE))]
 result_evsw<-WC84(t(g_evsw),pop_evsw)
 
+FST <- data.frame(FST=c(mean(result12$theta,na.rm=T), mean(result13$theta,na.rm=T), mean(result14$theta,na.rm=T), 
+                       mean(result23$theta,na.rm=T), mean(result24$theta,na.rm=T), mean(result34$theta,na.rm=T),
+                        mean(result_evsw$theta,na.rm=T)), 
+                 row.names = c('Gbb-Gbg', 'Gbb-Ggd', 'Gbb-Ggg', 'Gbg-Ggd', 'Gbg-Ggg', 'Ggd-Ggg',"East-West")
+print(FST)
+print('Done FST')
+
+
+##test
+a=a[!is.na(a)]
+a[a>=0]                  
+               
+                  
+                  
+                  
+#！！！###########no########################################################################
 # 4 vs total
 gg<-cbind(g,g)
 pop_t<-c(rep(1,7),rep(2,9),rep(3,1),rep(4,27),rep(5,44))
