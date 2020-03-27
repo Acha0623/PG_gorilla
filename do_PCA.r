@@ -21,12 +21,13 @@ plot_pca_basic <- function(pca_df, title, xlab, ylab){
                       ifelse(pca_df$Population == 'Gbg',"chartreuse3", 
                ifelse(pca_df$Population == 'Ggd',"palevioletred1",'dodgerblue2'))),
         pch = 16, main = title, xlab=xlab, ylab=ylab,cex.main=2, cex.lab=1.5, cex.axis=1.5, cex=2)
-    legend(x="topleft", legend = levels(pca_df$Population), cex=2,pch=16,col = colors)
+    legend(x="top", legend = levels(pca_df$Population), cex=2,pch=16,col = colors)
 }
+#unuse
 plot_pca_basic1 <- function(pca_df, title, xlab, ylab){
     plot(pca_df$PC1 , pca_df$PC2, col = pca_df$Population, pch = 16, main = title, xlab=xlab, ylab=ylab,
          cex.main=2, cex.lab=1.5, cex.axis=1.5, cex=2)
-    legend(x="topleft", legend = levels(pca_df$Population), cex=2,
+    legend(x="top", legend = levels(pca_df$Population), cex=2,
            fill = palette()[1:length(levels(pca_df$Population))],)
 }
 
