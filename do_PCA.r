@@ -40,8 +40,8 @@ pca_all = pca_all[order(pca_all$Population),]
 png("./PCA.All.png", width=1500, height=500,res=100)
 par(mfrow=c(1,3))
 plot_pca_basic(pca_all, title = 'All gorilla',
-        xlab=paste0("PC1 (",first_pc("Gsample21.pca10.eigenval"),"% of variance)"),
-        ylab=paste0("PC2 (",second_pc("Gsample21.pca10.eigenval"),"% of variance)"))
+        xlab=paste0("PC1 (",first_pc("Gsample.pca10.eigenval"),"% of variance)"),
+        ylab=paste0("PC2 (",second_pc("Gsample.pca10.eigenval"),"% of variance)"))
 
 
 #eastern
