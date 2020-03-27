@@ -4,7 +4,7 @@ gorilla
 ## 进度：
 
 ### 已经完成：
-【21号全部个体】
+【全】
 
 已经完成PCA（全部亚种）（东和西，都删除了LD），
 
@@ -14,9 +14,13 @@ fst(删除LD）
 
 het（没有进行filter），inbreedingcoefficient，
 
+【21号全部个体】
+
 LD block（先分类再filter）
 
 LD decay
+
+【全部个体的常染色】
 
 Ne(全部个体的常染色体来算，分别选了七个也是filter了，共21个）
 
