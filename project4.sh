@@ -15,7 +15,7 @@ nano GorillaID.txt  ## create a file including family ID and sample ID of all sa
 plink --bfile GorgorWholeGenFID --noweb --keep GorillaID.txt --hwe .001 --geno 0.02 --thin 0.05 --maf 0.15 --make-bed --out ../allsample/Gsample.clean
 
 cd ../allsample
-mkdir PCA admixture Heter Ne LD21 treemix FST Inbreeding
+mkdir PCA admixture Heter Ne LD_21 treemix FST Inbreeding
 
 ###PCA###
 cd PCA
@@ -77,7 +77,7 @@ nano inbreeding.txt ## create a file including all results based on above code
 Rscript do_Inbreedingplot.r
 
 ###LD block###
-cd ../LD21
+cd ../LD_21
 plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --chr 21 --family --keep-cluster-names Gbb --recode --out Gbb_LD
 plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --chr 21 --family --keep-cluster-names Gbg --recode --out Gbg_LD
 plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --chr 21 --family --keep-cluster-names Ggg --recode --out Ggg_LD
@@ -87,7 +87,7 @@ plink --file Ggg_LD --maf 0.15 --geno 0 --thin 0.20 --from 21:3016639 --to 21:80
 Rscript do_LDblock.r
 
 ###LD decay###
-plink --bfile ../../GorgorStudent/GorgorWholeGenFID --noweb --keep ../../GorgorStudent/GorillaID.txt --chr 21 --hwe .001 ---maf 0.15 --geno 0 --thin 0.20 --make-bed --out ./Gsample21.clean
+plink --bfile ../../GorgorStudent/GorgorWholeGenFID --noweb --keep ../../GorgorStudent/GorillaID.txt --chr 21 --hwe .001 --maf 0.15 --geno 0 --thin 0.20 --make-bed --out ./Gsample21.clean
 plink --bfile ./Gsample21.clean --family --keep-cluster-names Gbb --recode --out Gbb
 plink --bfile ./Gsample21.clean --family --keep-cluster-names Gbg --recode --out Gbg
 plink --bfile ./Gsample21.clean --family --keep-cluster-names Ggg --recode --out Ggg
