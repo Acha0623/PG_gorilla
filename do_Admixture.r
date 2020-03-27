@@ -1,9 +1,9 @@
 #plot ADMIXTURE results
-snpk2=read.table("./Gsample21.clean.2.Q")
-snpk3=read.table("./Gsample21.clean.3.Q")
-snpk4=read.table("./Gsample21.clean.4.Q")
-snpk5=read.table("./Gsample21.clean.5.Q")
-snpk6=read.table("./Gsample21.clean.6.Q")
+snpk2=read.table("./Gsample.clean.2.Q")
+snpk3=read.table("./Gsample.clean.3.Q")
+snpk4=read.table("./Gsample.clean.4.Q")
+snpk5=read.table("./Gsample.clean.5.Q")
+snpk6=read.table("./Gsample.clean.6.Q")
 names=c('Gbb-Maisha', 'Gbb-N010_Turimaso', 'Gbb-SC_EGWGS5386356_Zirikana',
 'Gbb-SC_EGWGS5389138_Imfura', 'Gbb-SC_EGWGS5389140_Tuck',
 'Gbb-SC_EGWGS5389618_Kaboko', 'Gbb-Umurimo', 'Gbg-9732_Mkubwa',
