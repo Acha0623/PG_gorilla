@@ -1,7 +1,7 @@
 ########## Linux ##########
 cd /home/personal/groupdirs/SCIENCE-BIO-popgen_course-project/Gorilla/data
 
-mkdir allsample  
+mkdir allsample   
 cd GorgorStudent
 ## change Family ID as subspecies name, and rename other files
 awk '{$1 = substr($1,1,3);print $0}' GorgorWholeGen.ped > GorgorWholeGenFID.ped
