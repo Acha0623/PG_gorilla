@@ -109,9 +109,9 @@ write.table(ressum, file="Gggsum.txt")
 
 #saves output as a .pdf
 pdf("LDdecay_chr21.pdf") 
-plot(gbb, type="l", col='darkred', ylim = c(0,1), ylab = 'R2', xlab = 'distance', lwd = 1.5)
+plot(gbb, type="l", col='darkred', ylim = c(0,1), ylab = 'R2', xlab = 'distance (10kbp)', lwd = 2, cex.lab=1.5,cex.axis=1.5)
 lines(gbg, col='chartreuse3', lwd = 1.5)
 lines(ggg, col='dodgerblue2', lwd = 1.5)
 legend("topright",legend=c("Gbb","Gbg","Ggg"),
-       col=c("darkred","chartreuse3","dodgerblue2"), lty = 1, lwd = 1.5)
+       col=c("darkred","chartreuse3","dodgerblue2"), lty = 1, lwd = 1.5,cex=1.5)
 print('Done LD decay')
