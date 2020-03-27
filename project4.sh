@@ -18,7 +18,7 @@ cd ../allsample
 mkdir PCA admixture Heter Ne LD21 treemix FST Inbreeding
 
 ###PCA###
-cd ../PCA
+cd PCA
 ##separate west and east Gorilla
 nano western_pop.txt  ## create a file including all western samples
 nano eastern_pop.txt  ## create a file including all eastern samples
