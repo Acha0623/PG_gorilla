@@ -8,10 +8,11 @@ awk '{$1 = substr($1,1,3);print $0}' GorgorWholeGen.ped > GorgorWholeGenFID.ped
 cp GorgorWholeGen.map > GorgorWholeGenFID.map
 cp GorgorWholeGen.log > GorgorWholeGenFID.log
 plink --file GorgorWholeGenFID --make-bed --out GorgorWholeGenFID 
-## filter data, choose 21 chromosome for 45 samples including human
-plink --bfile GorgorWholeGenFID --chr 21 --hwe .001 --geno 0.02 --thin 0.15 --maf 0.15 --make-bed --out ../allsample/allsample21.clean
+## filter data, for 45 samples including human
+plink --bfile GorgorWholeGenFID  --hwe .001 --geno 0.02 --thin 0.15 --maf 0.15 --make-bed --out ../allsample/allsample.clean
 nano GorillaID.txt  ## create a file including family ID and sample ID of all samples
-plink --bfile GorgorWholeGenFID --noweb --keep GorillaID.txt --chr 21 --hwe .001 --geno 0.02 --thin 0.15 --maf 0.15 --make-bed --out ../allsample/Gsample21.clean
+## filter data, for 44 gorilla samples
+plink --bfile GorgorWholeGenFID --noweb --keep GorillaID.txt --hwe .001 --geno 0.02 --thin 0.15 --maf 0.15 --make-bed --out ../allsample/Gsample.clean
 
 cd ../allsample
 mkdir PCA admixture Heter Ne LD21 treemix FST Inbreeding
@@ -22,20 +23,20 @@ cd ../PCA
 nano western_pop.txt  ## create a file including all western samples
 nano eastern_pop.txt  ## create a file including all eastern samples
 ## remove all pairs in LD with an R2 correlation coefficient of 0.5 or greater
-plink --bfile ../Gsample21.clean --noweb --keep western_pop.txt --indep-pairwise 50 10 0.5 --recode --out west
-plink --bfile ../Gsample21.clean --noweb --keep western_pop.txt --extract west.prune.in --make-bed --out westpurned21.clean
-plink --bfile ../Gsample21.clean --noweb --keep eastern_pop.txt --indep-pairwise 50 10 0.5 --recode --out east
-plink --bfile ../Gsample21.clean --noweb --keep eastern_pop.txt --extract east.prune.in --make-bed --out eastpurned21.clean
-plink --bfile ../Gsample21.clean  --pca 10 --out Gsample21.pca10
-plink --bfile eastpurned21.clean  --pca 10 --out east.pca10
-plink --bfile westpurned21.clean  --pca 10 --out west.pca10
+plink --bfile ../Gsample.clean --noweb --keep western_pop.txt --indep-pairwise 50 10 0.5 --recode --out west
+plink --bfile ../Gsample.clean --noweb --keep western_pop.txt --extract west.prune.in --make-bed --out westpurned.clean
+plink --bfile ../Gsample.clean --noweb --keep eastern_pop.txt --indep-pairwise 50 10 0.5 --recode --out east
+plink --bfile ../Gsample.clean --noweb --keep eastern_pop.txt --extract east.prune.in --make-bed --out eastpurned.clean
+plink --bfile ../Gsample.clean  --pca 10 --out Gsample21.pca10
+plink --bfile eastpurned.clean  --pca 10 --out east.pca10
+plink --bfile westpurned.clean  --pca 10 --out west.pca10
 Rscript do_PCA.r
 
 ###admixture###
 cd ../admixture
 #filter LD 
-plink --bfile ../Gsample21.clean --indep-pairwise 50 10 0.5
-plink --bfile ../Gsample21.clean --extract plink.prune.in --make-bed --out prunedData
+plink --bfile ../Gsample.clean --indep-pairwise 50 10 0.5
+plink --bfile ../Gsample.clean --extract plink.prune.in --make-bed --out prunedData
 for i in 2 3 4 5 6; do admixture --cv prunedData.bed $i; done > cvoutput
 grep -i 'CV error' ./cvoutput
 Rscirpt do_Admixture.r
@@ -86,9 +87,9 @@ plink --file Ggg_LD --maf 0.15 --geno 0 --thin 0.20 --from 21:3016639 --to 21:80
 Rscript do_LDblock.r
 
 ###LD decay###
-plink --bfile ../Gsample21.clean --family --keep-cluster-names Gbb --recode --out Gbb
-plink --bfile ../Gsample21.clean --family --keep-cluster-names Gbg --recode --out Gbg
-plink --bfile ../Gsample21.clean --family --keep-cluster-names Ggg --recode --out Ggg
+plink --bfile ../Gsample.clean --family --keep-cluster-names Gbb --recode --out Gbb
+plink --bfile ../Gsample.clean --family --keep-cluster-names Gbg --recode --out Gbg
+plink --bfile ../Gsample.clean --family --keep-cluster-names Ggg --recode --out Ggg
 # remove '21:'
 awk '{$2 = substr($2,4);print $0}' Gbb.map > Gbb2.map
 rm Gbb.map 
@@ -127,7 +128,7 @@ Rscript do_Ne_Nc_plot.r
 
 ###TreeMix###
 cd../Treemix
-plink --bfile ../allsample21.clean  --freq --missing --within allsample21.clean.clust
+plink --bfile ../allsample.clean  --freq --missing --within allsample.clean.clust
 gzip plink.frq.strat
 python plink2treemix.py plink.frq.strat.gz  treemix.gz
 treemix -i treemix.gz -root 5 -k 2  -o allstem
