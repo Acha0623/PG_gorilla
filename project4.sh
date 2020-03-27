@@ -27,7 +27,7 @@ plink --bfile ../Gsample.clean --noweb --keep western_pop.txt --indep-pairwise 5
 plink --bfile ../Gsample.clean --noweb --keep western_pop.txt --extract west.prune.in --make-bed --out westpurned.clean
 plink --bfile ../Gsample.clean --noweb --keep eastern_pop.txt --indep-pairwise 50 10 0.5 --recode --out east
 plink --bfile ../Gsample.clean --noweb --keep eastern_pop.txt --extract east.prune.in --make-bed --out eastpurned.clean
-plink --bfile ../Gsample.clean  --pca 10 --out Gsample21.pca10
+plink --bfile ../Gsample.clean  --pca 10 --out Gsample.pca10
 plink --bfile eastpurned.clean  --pca 10 --out east.pca10
 plink --bfile westpurned.clean  --pca 10 --out west.pca10
 Rscript do_PCA.r
