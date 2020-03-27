@@ -1,7 +1,7 @@
 ########## Linux ##########
 cd /home/personal/groupdirs/SCIENCE-BIO-popgen_course-project/Gorilla/data
 
-mkdir allsample 
+mkdir allsample  
 cd GorgorStudent
 ## change Family ID as subspecies name, and rename other files
 awk '{$1 = substr($1,1,3);print $0}' GorgorWholeGen.ped > GorgorWholeGenFID.ped
@@ -9,10 +9,10 @@ cp GorgorWholeGen.map > GorgorWholeGenFID.map
 cp GorgorWholeGen.log > GorgorWholeGenFID.log
 plink --file GorgorWholeGenFID --make-bed --out GorgorWholeGenFID 
 ## filter data, for 45 samples including human
-plink --bfile GorgorWholeGenFID  --hwe .001 --geno 0.02 --thin 0.15 --maf 0.15 --make-bed --out ../allsample/allsample.clean
+plink --bfile GorgorWholeGenFID  --hwe .001 --geno 0.02 --thin 0.05 --maf 0.15 --make-bed --out ../allsample/allsample.clean
 nano GorillaID.txt  ## create a file including family ID and sample ID of all samples
 ## filter data, for 44 gorilla samples
-plink --bfile GorgorWholeGenFID --noweb --keep GorillaID.txt --hwe .001 --geno 0.02 --thin 0.15 --maf 0.15 --make-bed --out ../allsample/Gsample.clean
+plink --bfile GorgorWholeGenFID --noweb --keep GorillaID.txt --hwe .001 --geno 0.02 --thin 0.05 --maf 0.15 --make-bed --out ../allsample/Gsample.clean
 
 cd ../allsample
 mkdir PCA admixture Heter Ne LD21 treemix FST Inbreeding
