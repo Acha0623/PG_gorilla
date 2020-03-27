@@ -33,7 +33,7 @@ plot_pca_basic1 <- function(pca_df, title, xlab, ylab){
 
 #All
 colors=c("darkred","chartreuse3","palevioletred1","dodgerblue2")
-pca_all = read.table('./Gsample21.pca10.eigenvec')
+pca_all = read.table('./Gsample.pca10.eigenvec')
 names(pca_all) = c('Population', 'Individual', 'PC1', 'PC2', 'PC3','PC4', 'PC5', 'PC6','PC7', 'PC8', 'PC9','PC10')
 pca_all$Population <- factor(pca_all$Population , levels =c("Gbb","Gbg","Ggd","Ggg"))
 pca_all = pca_all[order(pca_all$Population),]
