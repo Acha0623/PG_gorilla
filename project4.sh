@@ -87,7 +87,7 @@ plink --file Ggg_LD --maf 0.15 --geno 0 --thin 0.20 --from 21:3016639 --to 21:80
 Rscript do_LDblock.r
 
 ###LD decay###
-plink --bfile ../../GorgorStudent/GorgorWholeGenFID --noweb --keep ../../GorgorStudent/GorillaID.txt --maf 0.15 --geno 0 --thin 0.20 --make-bed --out ./Gsample21.clean
+plink --bfile ../../GorgorStudent/GorgorWholeGenFID --noweb --keep ../../GorgorStudent/GorillaID.txt -- chr 21 --maf 0.15 --geno 0 --thin 0.20 --make-bed --out ./Gsample21.clean
 plink --bfile ./Gsample21.clean --family --keep-cluster-names Gbb --recode --out Gbb
 plink --bfile ./Gsample21.clean --family --keep-cluster-names Gbg --recode --out Gbg
 plink --bfile ./Gsample21.clean --family --keep-cluster-names Ggg --recode --out Ggg
