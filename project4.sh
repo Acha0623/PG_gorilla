@@ -49,11 +49,13 @@ Rscript do_FST.r
 
 ###Heterozygosity###
 cd ../Heter 
+plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --noweb --keep ../../Gorgorstudent/GorillaID.txt --recode --out gorilla 
+plink --file gorilla --make-bed --out gorilla
 #no filter
-plink --bfile ../Ne/gorilla --chr 21  --family --keep-cluster-names Gbb --recode --out Gbb
-plink --bfile ../Ne/gorilla --chr 21  --family --keep-cluster-names Gbg --recode --out Gbg
-plink --bfile ../Ne/gorilla --chr 21  --family --keep-cluster-names Ggd --recode --out Ggd
-plink --bfile ../Ne/gorilla --chr 21  --family --keep-cluster-names Ggg --recode --out Ggg
+plink --bfile gorilla --chr 21  --family --keep-cluster-names Gbb --recode --out Gbb
+plink --bfile gorilla --chr 21  --family --keep-cluster-names Gbg --recode --out Gbg
+plink --bfile gorilla --chr 21  --family --keep-cluster-names Ggd --recode --out Ggd
+plink --bfile gorilla --chr 21  --family --keep-cluster-names Ggg --recode --out Ggg
 
 plink --noweb --file Gbb --freq --out Gbb
 plink --noweb --file Gbg --freq --out Gbg
@@ -110,9 +112,7 @@ Rscript do_LDdecay.r
 
 ###Ne###
 cd ../Ne
-plink --bfile ../../Gorgorstudent/GorgorWholeGenFID --noweb --keep ../../Gorgorstudent/GorillaID.txt --recode --out gorilla 
-plink --file gorilla --make-bed --out gorilla
-plink --bfile gorilla --not-chr xy --make-bed --out gorilla.clean
+plink --bfile ../Heter/gorilla --not-chr xy --make-bed --out gorilla.clean
 nano GbgsampleID.txt  ## choose 7 individuals from Gbg individuals
 nano GggsampleID.txt  ## choose 7 individuals from Ggg individuals
 plink --bfile gorilla.clean --family --keep-cluster-names Gbg --keep GbgsampleID.txt --hwe 0.001 --geno 0.02 --maf 0.05 --make-bed --out Gbg
