@@ -132,10 +132,21 @@ Rscript do_Ne_Nc_plot.r
 
 ###TreeMix###
 cd../Treemix
-plink --bfile ../allsample.clean  --freq --missing --within allsample.clean.clust
-gzip plink.frq.strat
-python plink2treemix.py plink.frq.strat.gz  treemix.gz
-treemix -i treemix.gz -root 5 -k 2  -o allstem
+awk '{print $1,$2,$2}' ../../Gorgorstudent/GorgorWholeGenFID.ped > allsample.clean.clust  #individual list
+awk '{print $1,$2,$1}' ../../Gorgorstudent/GorgorWholeGenFID.ped > allfamily.clean.clust  #popualtion list
+awk '{print $2}' ../../Gorgorstudent/GorgorWholeGenFID.ped > sample_order.txt #use for res pic
+awk '{print $1}'|uniq ../../Gorgorstudent/GorgorWholeGenFID.ped > family_order.txt
+#individual
+plink --bfile ../allsample.clean --freq --missing --within ./allsample.clean.clust --out allsample
+gzip allsample.frq.strat 
+python ./treemix-1.13/plink2treemix.py  allsample.frq.strat.gz  tree_allsample.gz
+treemix -i tree_allsample.gz  -root HG19 -o tree_allsample  ##-m 3  -noss -k 等参数
+#population
+plink --bfile ../allsample.clean --freq --missing --within ./allfamily.clean.clust --out allfamily
+gzip allfamily.frq.strat 
+python ./treemix-1.13/plink2treemix.py  allfamily.frq.strat.gz  tree_allfamily.gz
+treemix -i tree_allfamily.gz -root HG19 -o tree_allfamily_m3
 Rscript do_treemix.r
+
 
 print("Finish!:D")
