@@ -135,7 +135,7 @@ cd../Treemix
 awk '{print $1,$2,$2}' ../../Gorgorstudent/GorgorWholeGenFID.ped > allsample.clean.clust  #individual list
 awk '{print $1,$2,$1}' ../../Gorgorstudent/GorgorWholeGenFID.ped > allfamily.clean.clust  #popualtion list
 awk '{print $2}' ../../Gorgorstudent/GorgorWholeGenFID.ped > sample_order.txt #use for res pic
-awk '{print $1}'|uniq ../../Gorgorstudent/GorgorWholeGenFID.ped > family_order.txt
+awk '{print $1}' allfamily.clean.clust |uniq> family_order.txt
 #individual
 plink --bfile ../allsample.clean --freq --missing --within ./allsample.clean.clust --out allsample
 gzip allsample.frq.strat 
