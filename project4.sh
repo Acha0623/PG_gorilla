@@ -106,8 +106,6 @@ awk '{$2 = substr($2,4);print $0}' Ggg.map > Ggg2.map
 rm Ggg.map 
 mv Ggg2.map Ggg.map 
 plink --file Ggg --make-bed --out Ggg
-
-
 Rscript do_LDdecay.r
 
 ###Ne###
