@@ -145,7 +145,7 @@ treemix -i tree_allsample.gz  -root HG19 -o tree_allsample  ##-m 3  -noss -k 等
 plink --bfile ../allsample.clean --freq --missing --within ./allfamily.clean.clust --out allfamily
 gzip allfamily.frq.strat 
 python ./treemix-1.13/plink2treemix.py  allfamily.frq.strat.gz  tree_allfamily.gz
-treemix -i tree_allfamily.gz -root HG19 -o tree_allfamily_m3
+treemix -i tree_allfamily.gz -root HG19 -o tree_allfamily
 Rscript do_treemix.r
 
 
