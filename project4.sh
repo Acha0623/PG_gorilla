@@ -140,12 +140,12 @@ awk '{print $1}' allfamily.clean.clust |uniq> family_order.txt
 plink --bfile ../allsample.clean --freq --missing --within ./allsample.clean.clust --out allsample
 gzip allsample.frq.strat 
 python ./treemix-1.13/plink2treemix.py  allsample.frq.strat.gz  tree_allsample.gz
-treemix -i tree_allsample.gz  -root HG19 -o tree_allsample  ##-m 3  -noss -k 等参数
+treemix -i tree_allsample.gz  -root HG19 -o tree_allsample  
 #population
 plink --bfile ../allsample.clean --freq --missing --within ./allfamily.clean.clust --out allfamily
 gzip allfamily.frq.strat 
 python ./treemix-1.13/plink2treemix.py  allfamily.frq.strat.gz  tree_allfamily.gz
-treemix -i tree_allfamily.gz -root HG19 -o tree_allfamily
+treemix -i tree_allfamily.gz -root HG19 -m 2 -o tree_allfamily # we tried m 1-5
 Rscript do_treemix.r
 
 
