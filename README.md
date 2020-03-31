@@ -1,6 +1,8 @@
 # project1
 gorilla
 
+##全部完成！！！！！！
+
 ## 进度：
 
 ### 已经完成：
@@ -11,6 +13,8 @@ gorilla
 admixture(删除LD），
 
 fst(删除LD）
+
+treemix（人root）
 
 【21号全部个体】
 
@@ -23,12 +27,6 @@ LD decay （与LDfilter标准相同，但是多了--hwe）
 【全部个体的常染色】
 
 Ne(全部个体的常染色体来算，分别选了七个也是filter了，共21个）
-
-
-### 待定：
-treemix（人root？）
-
-需要： 查个文献证明inbreeding coefficient舍去负数，treemix 意义
 
 
 ## 一些解释部分
